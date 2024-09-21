@@ -1,0 +1,22 @@
+{
+    "name": "callmeaf/payment",
+    "description": "Manage Payments",
+    "type": "library",
+    "require": {
+        "callmeaf/base": "dev-master",
+        "callmeaf/variation": "dev-master"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Callmeaf\\Payment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alikhoshkar",
+            "email": "alikhoshkar2000@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
