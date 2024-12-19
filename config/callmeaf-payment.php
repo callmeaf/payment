@@ -34,6 +34,9 @@ return [
         \Callmeaf\Payment\Events\PaymentTrashed::class => [
             // listeners
         ],
+        \Callmeaf\Payment\Events\PaymentForceDestroyed::class => [
+            // listeners
+        ],
         \Callmeaf\Payment\Events\PaymentDocumentsUpdated::class => [
             // listeners
         ],

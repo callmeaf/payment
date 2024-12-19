@@ -18,6 +18,7 @@ class PaymentFormRequestValidator extends FormRequestValidator
     {
         return [
             'variations_ids' => true,
+            'variations_ids.*' => true,
         ];
     }
 
@@ -30,6 +31,7 @@ class PaymentFormRequestValidator extends FormRequestValidator
     {
         return [
             'variations_ids' => true,
+            'variations_ids.*' => true,
         ];
     }
 
