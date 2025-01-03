@@ -16,9 +16,13 @@ class PaymentItemController extends ApiController
     protected PaymentItemResources $paymentItemResources;
     public function __construct()
     {
-        app(config('callmeaf-payment-item.middlewares.payment_item'))($this);
         $this->paymentItemService = app(config('callmeaf-payment-item.service'));
         $this->paymentItemResources = app(config('callmeaf-payment-item.resources.payment_item'));
+    }
+
+    public static function middleware(): array
+    {
+        return app(config('callmeaf-payment-item.middlewares.payment_item'))();
     }
 
     public function statusUpdate(PaymentItemStatusUpdateRequest $request,PaymentItem $paymentItem)

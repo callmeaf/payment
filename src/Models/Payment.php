@@ -3,7 +3,6 @@
 namespace Callmeaf\Payment\Models;
 
 use Callmeaf\Base\Contracts\HasEnum;
-use Callmeaf\Base\Contracts\HasMeta;
 use Callmeaf\Base\Contracts\HasResponseTitles;
 use Callmeaf\Base\Enums\ResponseTitle;
 use Callmeaf\Base\Traits\HasDate;
@@ -21,7 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Payment extends Model implements HasResponseTitles,HasEnum,HasMedia,HasMeta
+class Payment extends Model implements HasResponseTitles,HasEnum,HasMedia
 {
     use HasDate,HasStatus,HasType,SoftDeletes,InteractsWithMedia,HasMediaMethod,Metaable;
     protected $fillable = [
@@ -91,10 +90,4 @@ class Payment extends Model implements HasResponseTitles,HasEnum,HasMedia,HasMet
         return __('callmeaf-payment::enums');
     }
 
-    public function metaData(): ?array
-    {
-        return [
-            'user' => $this->user,
-        ];
-    }
 }

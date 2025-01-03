@@ -36,9 +36,13 @@ class PaymentController extends ApiController
     protected PaymentResources $paymentResources;
     public function __construct()
     {
-        app(config('callmeaf-payment.middlewares.payment'))($this);
         $this->paymentService = app(config('callmeaf-payment.service'));
         $this->paymentResources = app(config('callmeaf-payment.resources.payment'));
+    }
+
+    public static function middleware(): array
+    {
+        return app(config('callmeaf-payment.middlewares.payment'))();
     }
 
     public function index(PaymentIndexRequest $request)
