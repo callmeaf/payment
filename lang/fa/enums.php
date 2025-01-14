@@ -2,6 +2,7 @@
 
 use Callmeaf\Payment\Enums\PaymentItemStatus;
 use Callmeaf\Payment\Enums\PaymentItemType;
+use Callmeaf\Payment\Enums\PaymentMethod;
 use Callmeaf\Payment\Enums\PaymentStatus;
 use Callmeaf\Payment\Enums\PaymentType;
 
@@ -15,12 +16,10 @@ return [
     PaymentType::class => [
         PaymentType::BUY->name => 'خرید',
     ],
-    PaymentItemStatus::class => [
-        PaymentItemStatus::DELIVERED->name => 'تحویل داده شده',
-        PaymentItemStatus::NOT_DELIVERED->name => 'تحویل داده نشده',
-    ],
-    PaymentItemType::class => [
-        PaymentItemType::DIGITAL->name => 'دیجیتالی',
-        PaymentItemType::PHYSICAL->name => 'فیزیکی',
+    PaymentMethod::class => [
+        PaymentMethod::CASH->name => 'نقد',
+        PaymentMethod::CREDIT_CARD->name => 'کارت به کارت',
+        PaymentMethod::WALLET->name => 'کیف پول',
+        PaymentMethod::GATEWAY->name => 'درگاه بانکی',
     ],
 ];

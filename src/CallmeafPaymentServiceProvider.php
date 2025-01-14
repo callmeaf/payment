@@ -10,8 +10,6 @@ class CallmeafPaymentServiceProvider extends ServiceProvider
     private const CONFIGS_DIR = __DIR__ . '/../config';
     private const CONFIGS_KEY = 'callmeaf-payment';
     private const CONFIGS_GROUP = 'callmeaf-payment-config';
-    private const CONFIGS_PAYMENT_ITEM_KEY = 'callmeaf-payment-item';
-    private const CONFIGS_PAYMENT_ITEM_GROUP = 'callmeaf-payment-item-config';
     private const ROUTES_DIR = __DIR__ . '/../routes';
     private const DATABASE_DIR = __DIR__ . '/../database';
     private const DATABASE_GROUPS = 'callmeaf-payment-migrations';
@@ -38,10 +36,6 @@ class CallmeafPaymentServiceProvider extends ServiceProvider
             self::CONFIGS_DIR . '/callmeaf-payment.php' => config_path('callmeaf-payment.php'),
         ],self::CONFIGS_GROUP);
 
-        $this->mergeConfigFrom(self::CONFIGS_DIR . '/callmeaf-payment-item.php',self::CONFIGS_PAYMENT_ITEM_KEY);
-        $this->publishes([
-            self::CONFIGS_PAYMENT_ITEM_KEY . '/callmeaf-payment-item.php' => config_path('callmeaf-payment-item.php'),
-        ],self::CONFIGS_PAYMENT_ITEM_GROUP);
     }
 
     private function registerRoute(): void

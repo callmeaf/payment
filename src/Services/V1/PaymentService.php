@@ -35,36 +35,12 @@ class PaymentService extends BaseService implements PaymentServiceInterface
          */
         $variationService = app(config('callmeaf-variation.service'));
         $variations = $variationService->where('id',$variationsIds)->all(perPage: 0,page: 0)->getCollection();
-        /**
-         * @var PaymentItemService $paymentItemService
-         */
-        $paymentItemService = app(config('callmeaf-payment-item.service'));
-        foreach ($variations as $variation) {
-            $paymentItemService->create([
-                'payment_id' => $this->model->id,
-                'variation_id' => $variation->id,
-                'type' => $variation->isDigital() ? PaymentItemType::DIGITAL : PaymentItemType::PHYSICAL,
-                'price' => $variation->price,
-                'discount_price' => $variation->discount_price,
-            ]);
-        }
+
         $this->update([
             'total_price' => $variations->sum(fn($variation) => $variation->price),
             'total_discount_price' => $variations->sum(fn($variation) => $variation->discount_price)
         ]);
         return $this;
-    }
-
-    public function newRefCode(): ?string
-    {
-        $refCode = randomId(length: config('callmeaf-payment.ref_code_length'),prefix: config('callmeaf-payment.prefix_ref_code'));
-        if(is_null($refCode)) {
-            return null;
-        }
-        if($this->freshQuery()->where(column: 'ref_code',valueOrOperation: $refCode)->exists()) {
-            return  $this->newRefCode();
-        }
-        return $refCode;
     }
 
     public function newTrCode(): ?string
@@ -74,7 +50,7 @@ class PaymentService extends BaseService implements PaymentServiceInterface
             return null;
         }
         if($this->freshQuery()->where(column: 'tr_code',valueOrOperation: $trCode)->exists()) {
-            return  $this->newRefCode();
+            return  $this->newTrCode();
         }
         return $trCode;
     }

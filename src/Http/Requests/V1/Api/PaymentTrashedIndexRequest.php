@@ -22,7 +22,6 @@ class PaymentTrashedIndexRequest extends FormRequest
     public function rules(): array
     {
         return validationManager(rules: [
-            'ref_code' => [],
             'tr_code' => [],
         ],filters: [
             ... app(config("callmeaf-payment.validations.payment"))->trashed(),

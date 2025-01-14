@@ -9,7 +9,6 @@ class PaymentFormRequestValidator extends FormRequestValidator
     public function index(): array
     {
         return [
-            'ref_code' => false,
             'tr_code' => false,
         ];
     }
@@ -17,6 +16,7 @@ class PaymentFormRequestValidator extends FormRequestValidator
     public function store(): array
     {
         return [
+            'method' => false,
             'variations_ids' => true,
             'variations_ids.*' => true,
         ];
@@ -30,6 +30,7 @@ class PaymentFormRequestValidator extends FormRequestValidator
     public function update(): array
     {
         return [
+            'method' => false,
             'variations_ids' => true,
             'variations_ids.*' => true,
         ];
@@ -55,7 +56,6 @@ class PaymentFormRequestValidator extends FormRequestValidator
     public function trashed(): array
     {
         return [
-            'ref_code' => false,
             'tr_code' => false,
         ];
     }

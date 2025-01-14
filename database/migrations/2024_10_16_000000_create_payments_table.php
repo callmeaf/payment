@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(config('callmeaf-user.model'))->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(config('callmeaf-order.model'))->nullable()->constrained()->nullOnDelete();
             $table->string('status')->nullable();
             $table->string('type')->nullable();
+            $table->string('method')->nullable();
             $table->string('ref_code')->nullable();
             $table->string('tr_code')->nullable();
             $table->string('total_price')->nullable();
-            $table->string('total_discount_price')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

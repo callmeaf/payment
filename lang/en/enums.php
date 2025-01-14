@@ -2,6 +2,7 @@
 
 use Callmeaf\Payment\Enums\PaymentItemStatus;
 use Callmeaf\Payment\Enums\PaymentItemType;
+use Callmeaf\Payment\Enums\PaymentMethod;
 use Callmeaf\Payment\Enums\PaymentStatus;
 use Callmeaf\Payment\Enums\PaymentType;
 
@@ -15,12 +16,10 @@ return [
     PaymentType::class => [
         PaymentType::BUY->name => 'Buy',
     ],
-    PaymentItemStatus::class => [
-        PaymentItemStatus::DELIVERED->name => 'Delivered',
-        PaymentItemStatus::NOT_DELIVERED->name => 'Not Delivered',
-    ],
-    PaymentItemType::class => [
-        PaymentItemType::DIGITAL->name => 'Digital',
-        PaymentItemType::PHYSICAL->name => 'Physical',
+    PaymentMethod::class => [
+        PaymentMethod::CASH->name => 'Cash',
+        PaymentMethod::CREDIT_CARD->name => 'Credit Card',
+        PaymentMethod::WALLET->name => 'Wallet',
+        PaymentMethod::GATEWAY->name => 'Gateway',
     ],
 ];

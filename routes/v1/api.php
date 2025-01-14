@@ -15,10 +15,4 @@ Route::prefix(config('callmeaf-base.api.prefix_url'))->as(config('callmeaf-base.
         });
         Route::get('/trashed/index','trashed')->name('trashed.index');
     });
-    // Payment Items
-    Route::prefix('payment_items')->as('payment_items.')->controller(config('callmeaf-payment-item.controllers.payment_items'))->group(function() {
-        Route::prefix('{payment_item}')->group(function() {
-            Route::patch('/status','statusUpdate')->name('status_update');
-        });
-    });
 });

@@ -8,6 +8,7 @@ return [
     'default_values' => [
         'status' => \Callmeaf\Payment\Enums\PaymentStatus::PENDING,
         'type' => \Callmeaf\Payment\Enums\PaymentType::BUY,
+        'method' => \Callmeaf\Payment\Enums\PaymentMethod::GATEWAY,
     ],
     'events' => [
         \Callmeaf\Payment\Events\PaymentIndexed::class => [
@@ -57,8 +58,7 @@ return [
         'payment' => \Callmeaf\Payment\Utilities\V1\Api\Payment\PaymentControllerMiddleware::class,
     ],
     'searcher' => \Callmeaf\Payment\Utilities\V1\Api\Payment\PaymentSearcher::class,
-    'prefix_ref_code' => 'callmeaf-',
-    'ref_code_length' => 6,
     'prefix_tr_code' => 'callmeaf-',
+    // current length without calculate prefix_tr_code
     'tr_code_length' => 6,
 ];

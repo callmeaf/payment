@@ -108,6 +108,7 @@ class PaymentController extends ApiController
     public function update(PaymentUpdateRequest $request,Payment $payment)
     {
         try {
+            // TODO: REMOVE IF NOT USED
             $resources = $this->paymentResources->update();
             $payment = $this->paymentService->setModel($payment)->update(data: $request->validated(),events: [
                 PaymentUpdated::class,
@@ -146,10 +147,11 @@ class PaymentController extends ApiController
     public function destroy(PaymentDestroyRequest $request,Payment $payment)
     {
         try {
+            // TODO: REMOVE IF NOT USED
             $resources = $this->paymentResources->destroy();
             $payment = $this->paymentService->setModel($payment)->delete(events: [
                 PaymentDestroyed::class,
-            ])->getModel(asResource: true,attributes: $resources->destroy(),relations: $resources->relations());
+            ])->getModel(asResource: true,attributes: $resources->attributes(),relations: $resources->relations());
             return apiResponse([
                 'payment' => $payment,
             ],__('callmeaf-base::v1.successful_deleted', [
@@ -165,8 +167,9 @@ class PaymentController extends ApiController
     public function restore(PaymentRestoreRequest $request,string|int $id)
     {
         try {
+            // TODO: REMOVE IF NOT USED
             $resources = $this->paymentResources->restore();
-            $payment = $this->paymentService->restore(id: $id,idColumn: config('callmeaf-payment.resources.restore.id_column'),events: [
+            $payment = $this->paymentService->restore(id: $id,idColumn: $resources->idColumn(),events: [
                 PaymentRestored::class
             ])->getModel(asResource: true,attributes: $resources->attributes(),relations: $resources->relations());
             return apiResponse([
@@ -183,6 +186,7 @@ class PaymentController extends ApiController
     public function trashed(PaymentTrashedIndexRequest $request)
     {
         try {
+            // TODO: REMOVE IF NOT USED
             $resources = $this->paymentResources->trashed();
             $payments = $this->paymentService->onlyTrashed()->all(
                 relations: $resources->relations(),
@@ -203,6 +207,7 @@ class PaymentController extends ApiController
     public function forceDestroy(PaymentForceDestroyRequest $request,string|int $id)
     {
         try {
+            // TODO: REMOVE IF NOT USED
             $resources = $this->paymentResources->forceDestroy();
             $payment = $this->paymentService->forceDelete(id: $id,idColumn: $resources->idColumn(),columns: $resources->columns(),events: [
                 PaymentForceDestroyed::class,
